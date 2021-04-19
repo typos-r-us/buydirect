@@ -26,7 +26,7 @@
       }
     ?>
   	<div class="login-box-body">
-    	<p class="login-box-msg">Sign in to start your session</p>
+    	<p class="login-box-msg">Sign in to your account</p>
 
     	<form action="verify.php" method="POST">
       		<div class="form-group has-feedback">
@@ -43,10 +43,10 @@
         		</div>
       		</div>
     	</form>
-      <br>
-      <a href="password_forgot.php">I forgot my password</a><br>
-      <a href="signup.php" class="text-center">Register a new membership</a><br>
-      <a href="index.php"><i class="fa fa-home"></i> Home</a>
+      <hr>
+      <a href="password_forgot.php"class="text-center">Reset Account Password</a><br>
+      <a href="signup.php" class="text-center">Register New Account</a><br>
+      <a href="index.php"><i class="fa fa-home"></i>Site Home Page</a>
   	</div>
 </div>
 	

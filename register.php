@@ -16,8 +16,8 @@
 		$_SESSION['email'] = $email;
 
 		if(!isset($_SESSION['captcha'])){
-			require('recaptcha/src/autoload.php');		
-			$recaptcha = new \ReCaptcha\ReCaptcha('6LevO1IUAAAAAFCCiOHERRXjh3VrHa5oywciMKcw', new \ReCaptcha\RequestMethod\SocketPost());
+			require_once('recaptcha/src/autoload.php');
+			$recaptcha = new \ReCaptcha\ReCaptcha('6LcnFqgaAAAAADCExgcsqW_jvv9zdx9J8CFsSjhs', new \ReCaptcha\RequestMethod\SocketPost()); // 6LevO1IUAAAAAFCCiOHERRXjh3VrHa5oywciMKcw
 			$resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
 
 			if (!$resp->isSuccess()){
@@ -74,10 +74,15 @@
 				    try {
 				        //Server settings
 				        $mail->isSMTP();                                     
-				        $mail->Host = 'smtp.gmail.com';                      
-				        $mail->SMTPAuth = true;                               
-				        $mail->Username = 'testsourcecodester@gmail.com';     
-				        $mail->Password = 'mysourcepass';                    
+				        $mail->Host = 'smtp.gmail.com';
+				        $mail->SMTPDebug=2;
+				        $mail->SMTPAuth = true;
+				        $mail->Priority=1;
+				        $mail->Encoding='8bit';
+				        $mail->WordWrap = 50;
+				        $mail->isHTML(true);
+				        $mail->Username = 'gitonga.joyces.family';
+				        $mail->Password = 'KabWaithera23!'; //tYp05.4.5@l3
 				        $mail->SMTPOptions = array(
 				            'ssl' => array(
 				            'verify_peer' => false,
@@ -85,18 +90,18 @@
 				            'allow_self_signed' => true
 				            )
 				        );                         
-				        $mail->SMTPSecure = 'ssl';                           
-				        $mail->Port = 465;                                   
+				        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;//SMTPSecure = 'tls'; //ssl
+				        $mail->Port = 587; //465
 
-				        $mail->setFrom('testsourcecodester@gmail.com');
+				        $mail->setFrom('typosforsale@gmail.com');
 				        
 				        //Recipients
 				        $mail->addAddress($email);              
-				        $mail->addReplyTo('testsourcecodester@gmail.com');
+				        $mail->addReplyTo('typosforsale@gmail.com');
 				       
 				        //Content
 				        $mail->isHTML(true);                                  
-				        $mail->Subject = 'ECommerce Site Sign Up';
+				        $mail->Subject = 'BuyDirect Website Registration';
 				        $mail->Body    = $message;
 
 				        $mail->send();
@@ -105,12 +110,12 @@
 				        unset($_SESSION['lastname']);
 				        unset($_SESSION['email']);
 
-				        $_SESSION['success'] = 'Account created. Check your email to activate.';
+				        $_SESSION['success'] = 'Account created successfully. Please check your email to activate your account.';
 				        header('location: signup.php');
 
 				    } 
 				    catch (Exception $e) {
-				        $_SESSION['error'] = 'Message could not be sent. Mailer Error: '.$mail->ErrorInfo;
+				        $_SESSION['error'] = 'Message could not be sent. PHPMailer Reported Error: '.$mail->ErrorInfo;
 				        header('location: signup.php');
 				    }
 
@@ -129,7 +134,7 @@
 
 	}
 	else{
-		$_SESSION['error'] = 'Fill up signup form first';
+		$_SESSION['error'] = 'Please complete the registration form.';
 		header('location: signup.php');
 	}
 

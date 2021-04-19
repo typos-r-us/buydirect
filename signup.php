@@ -35,7 +35,7 @@
       }
     ?>
   	<div class="register-box-body">
-    	<p class="login-box-msg">Register a new membership</p>
+    	<p class="login-box-msg">New User Registration</p>
 
     	<form action="register.php" method="POST">
           <div class="form-group has-feedback">
@@ -62,7 +62,7 @@
             if(!isset($_SESSION['captcha'])){
               echo '
                 <di class="form-group" style="width:100%;">
-                  <div class="g-recaptcha" data-sitekey="6LevO1IUAAAAAFX5PpmtEoCxwae-I8cCQrbhTfM6"></div>
+                  <div class="g-recaptcha" data-sitekey="6LcnFqgaAAAAAEhz-3TsLjnZFL8BLjRdoR4hJFJj"></div> <!--6LevO1IUAAAAAFX5PpmtEoCxwae-I8cCQrbhTfM6-->
                 </di>
               ';
             }
@@ -75,8 +75,9 @@
       		</div>
     	</form>
       <br>
-      <a href="login.php">I already have a membership</a><br>
-      <a href="index.php"><i class="fa fa-home"></i> Home</a>
+        <hr>
+      <a href="login.php">Already Registered? Login Here</a><br>
+      <a href="index.php"><i class="fa fa-home"></i> Site Home Page</a>
   	</div>
 </div>
 	

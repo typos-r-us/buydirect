@@ -7,7 +7,8 @@
 		$conn = $pdo->open();
 
 		try{
-			$stmt = $conn->prepare("DELETE FROM category WHERE id=:id");
+			#$stmt = $conn->prepare("DELETE FROM category WHERE id=:id");
+            $stmt = $conn->prepare("UPDATE category SET isRemoved=1 WHERE id=:id");
 			$stmt->execute(['id'=>$id]);
 
 			$_SESSION['success'] = 'Category deleted successfully';

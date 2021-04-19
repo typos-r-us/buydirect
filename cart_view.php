@@ -32,7 +32,10 @@
 	        		<?php
 	        			if(isset($_SESSION['user'])){
 	        				echo "
-	        					<div id='paypal-button'></div>
+                                <div style='width: 20%; display: flex'>
+	        					<div id='paypal-button' style='float: left'></div>
+	        					<div id='mpesa-button'style='float: right'></div> 
+	        					</div>
 	        				";
 	        			}
 	        			else{
@@ -157,11 +160,10 @@ function getTotal(){
 <!-- Paypal Express -->
 <script>
 paypal.Button.render({
-    env: 'sandbox', // change for production if app is live,
-
+    env: 'sandbox', // change to production if site is live,
+   // paypal api client ID
 	client: {
-        sandbox:    'ASb1ZbVxG5ZFzCWLdYLi_d1-k5rmSjvBZhxP2etCxBKXaJHxPba13JJD_D3dTNriRbAv3Kp_72cgDvaZ',
-        //production: 'AaBHKJFEej4V6yaArjzSx9cuf-UYesQYKqynQVCdBlKuZKawDDzFyuQdidPOBSGEhWaNQnnvfzuFB9SM'
+        sandbox:    'AVooEaMXb3DvN1sBPfnsv264BhO9qijxWEjsVHVyRya8W4xBe3Bb3s0fui91QdC4TlvR3fM2Ov6lRblZ',
     },
 
     commit: true, // Show a 'Pay Now' button
@@ -179,7 +181,7 @@ paypal.Button.render({
                     	//total purchase
                         amount: { 
                         	total: total, 
-                        	currency: 'USD' 
+                        	currency: 'USD'
                         }
                     }
                 ]
@@ -194,6 +196,46 @@ paypal.Button.render({
     },
 
 }, '#paypal-button');
+</script>
+// M-Pesa Placeholder
+<script>
+    paypal.Button.render({
+        env: 'sandbox', // change to production if site is live,
+        // paypal api client ID
+        client: {
+            sandbox:    'AVooEaMXb3DvN1sBPfnsv264BhO9qijxWEjsVHVyRya8W4xBe3Bb3s0fui91QdC4TlvR3fM2Ov6lRblZ',
+        },
+
+        commit: true, // Show a 'Pay Now' button
+
+        style: {
+            color: 'blue',
+            size: 'small'
+        },
+
+        payment: function(data, actions) {
+            return actions.payment.create({
+                payment: {
+                    transactions: [
+                        {
+                            //total purchase
+                            amount: {
+                                total: total,
+                                currency: 'USD'
+                            }
+                        }
+                    ]
+                }
+            });
+        },
+
+        onAuthorize: function(data, actions) {
+            return actions.payment.execute().then(function(payment) {
+                window.location = 'sales.php?pay='+payment.id;
+            });
+        },
+
+    }, '#mpesa-button');
 </script>
 </body>
 </html>
