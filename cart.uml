@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.cart</OriginalElement>
+  <nodes>
+    <node x="205.225" y="0.0">12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.users</node>
+    <node x="324.125" y="467.0">12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.sales</node>
+    <node x="37.5" y="110.0">12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.category</node>
+    <node x="0.0" y="716.0">12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.writeoffs</node>
+    <node x="63.724999999999994" y="390.0">12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.products</node>
+    <node x="295.875" y="738.0">12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.details</node>
+    <node x="162.875" y="738.0">12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.cart</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.writeoffs" target="12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.users" relationship="REFERENCES">
+      <point x="-33.0" y="-82.0" />
+      <point x="33.0" y="695.0" />
+      <point x="31.5" y="695.0" />
+      <point x="31.5" y="370.0" />
+      <point x="278.725" y="370.0" />
+      <point x="0.0" y="170.0" />
+    </edge>
+    <edge source="12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.cart" target="12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.products" relationship="REFERENCES">
+      <point x="-28.25" y="-60.0" />
+      <point x="191.125" y="695.0" />
+      <point x="122.225" y="695.0" />
+      <point x="0.0" y="137.0" />
+    </edge>
+    <edge source="12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.sales" target="12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.users" relationship="REFERENCES">
+      <point x="0.0" y="-60.0" />
+      <point x="380.625" y="370.0" />
+      <point x="278.725" y="370.0" />
+      <point x="0.0" y="170.0" />
+    </edge>
+    <edge source="12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.details" target="12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.sales" relationship="REFERENCES">
+      <point x="28.25" y="-60.0" />
+      <point x="0.0" y="60.0" />
+    </edge>
+    <edge source="12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.products" target="12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.category" relationship="REFERENCES">
+      <point x="0.0" y="-137.0" />
+      <point x="122.225" y="360.0" />
+      <point x="100.5" y="360.0" />
+      <point x="0.0" y="60.0" />
+    </edge>
+    <edge source="12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.cart" target="12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.users" relationship="REFERENCES">
+      <point x="28.25" y="-60.0" />
+      <point x="247.625" y="685.0" />
+      <point x="278.725" y="685.0" />
+      <point x="0.0" y="170.0" />
+    </edge>
+    <edge source="12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.details" target="12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.products" relationship="REFERENCES">
+      <point x="-28.25" y="-60.0" />
+      <point x="324.125" y="695.0" />
+      <point x="122.225" y="695.0" />
+      <point x="0.0" y="137.0" />
+    </edge>
+    <edge source="12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.writeoffs" target="12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.products" relationship="REFERENCES">
+      <point x="33.0" y="-82.0" />
+      <point x="99.0" y="695.0" />
+      <point x="122.225" y="695.0" />
+      <point x="0.0" y="137.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.6488888888888888" showDependencies="false" x="222.5" y="466.0" />
+  <SelectedNodes>
+    <node>12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.users</node>
+    <node>12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.sales</node>
+    <node>12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.category</node>
+    <node>12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.writeoffs</node>
+    <node>12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.products</node>
+    <node>12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.details</node>
+    <node>12a453db-d451-4fee-b8bb-2c91d789b0de.TABLE:buydirect.cart</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Columns</Category>
+    <Category>Key columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+
