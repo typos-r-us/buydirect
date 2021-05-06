@@ -19,12 +19,12 @@ if(isset($_GET['category'])){
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Receive New Items
+                Write Off Damaged/Lost Products
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li>Inventory</li>
-                <li class="active">Receive New Items</li>
+                <li>Products</li>
+                <li class="active">Write Off Items</li>
             </ol>
         </section>
 
@@ -56,7 +56,7 @@ if(isset($_GET['category'])){
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header with-border">
-
+<!--                            <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat" id="addproduct"><i class="fa fa-plus"></i> Add New Product</a>-->
                             <div class="pull-right">
                                 <form class="form-inline">
                                     <div class="form-group">
@@ -72,8 +72,8 @@ if(isset($_GET['category'])){
                                             foreach($stmt as $crow){
                                                 $selected = ($crow['id'] == $catid) ? 'selected' : '';
                                                 echo "
-                            <option value='".$crow['id']."' ".$selected.">".$crow['name']."</option>
-                          ";
+                                                <option value='".$crow['id']."' ".$selected.">".$crow['name']."</option>
+                                              ";
                                             }
 
                                             $pdo->close();
@@ -89,6 +89,7 @@ if(isset($_GET['category'])){
                                 <th>Name</th>
                                 <th>Photo</th>
                                 <th>Description</th>
+                                <th>Price</th>
                                 <th>Stock In Hand</th>
                                 <th>Actions</th>
                                 </thead>
@@ -103,25 +104,25 @@ if(isset($_GET['category'])){
 
                                     foreach($stmt as $row){
                                         $image = (!empty($row['photo'])) ? '../images/'.$row['photo'] : '../images/noimage.jpg';
-                                        $stock = ($row['stock']);
                                         echo "
-                          <tr>
-                            <td>".$row['name']."</td>
-                            <td>
-                              <img src='".$image."' height='30px' width='30px'>
-                              <span class='pull-right'><a href='#edit_photo' class='photo' data-toggle='modal' data-id='".$row['id']."'><i class='fa fa-edit'></i></a></span>
-                            </td>
-                            <td><a href='#description' data-toggle='modal' class='btn btn-info btn-sm btn-flat desc' data-id='".$row['id']."'><i class='fa fa-search'></i> View</a></td>
-                            <td>".$stock."</td>
-                          
-                            <td>
-                              <button class='btn btn-success btn-sm addStock btn-flat' data-id='".$row['id']."'><i class='fa fa-plus-square'></i> Add Stock</button>
-                            </td>
-                          </tr>
-                        ";
+                                              <tr>
+                                                <td>".$row['name']."</td>
+                                                <td>
+                                                  <img src='".$image."' height='30px' width='30px'>
+                                                  <span class='pull-right'><a href='#edit_photo' class='photo' data-toggle='modal' data-id='".$row['id']."'><i class='fa fa-edit'></i></a></span>
+                                                </td>
+                                                <td><a href='#description' data-toggle='modal' class='btn btn-info btn-sm btn-flat desc' data-id='".$row['id']."'><i class='fa fa-search'></i> View</a></td>
+                                                <td>KSh. ".number_format($row['price'], 2)."</td>
+                                                <td>".$row['stock']."</td>
+                                                <td>
+                                                  <button class='btn btn-danger btn-sm writeOff btn-flat' data-id='".$row['id']."'><i class='fa fa-adjust'></i> Write Off</button>
+                                                </td>
+                                              </tr>
+                                            ";
                                     }
                                 }
                                 catch(PDOException $e){
+                                    # catch query errors
                                     echo $e->getMessage();
                                 }
 
@@ -146,46 +147,11 @@ if(isset($_GET['category'])){
 <?php include 'includes/scripts.php'; ?>
 <script>
     $(function(){
-        $(document).on('click', '.addStock', function(e){
+        $(document).on('click', '.writeOff', function(e){
             e.preventDefault();
-            $('#addStock').modal('show');
+            $('#writeOff').modal('show');
             var id = $(this).data('id');
             getRow(id);
-        });
-
-        $(document).on('click', '.photo', function(e){
-            e.preventDefault();
-            var id = $(this).data('id');
-            getRow(id);
-        });
-
-        $(document).on('click', '.desc', function(e){
-            e.preventDefault();
-            var id = $(this).data('id');
-            getRow(id);
-        });
-
-        $('#select_category').change(function(){
-            var val = $(this).val();
-            if(val == 0){
-                window.location = 'products.php';
-            }
-            else{
-                window.location = 'products.php?category='+val;
-            }
-        });
-
-        $('#addproduct').click(function(e){
-            e.preventDefault();
-            getCategory();
-        });
-
-        $("#addnew").on("hidden.bs.modal", function () {
-            $('.append_items').remove();
-        });
-
-        $("#edit").on("hidden.bs.modal", function () {
-            $('.append_items').remove();
         });
 
     });
