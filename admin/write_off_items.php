@@ -19,12 +19,12 @@ if(isset($_GET['category'])){
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Receive New Items
+                Write Off Damaged/Lost Products
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="home.php"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li>Inventory</li>
-                <li class="active">Receive New Items</li>
+                <li class="active">Write Off Items</li>
             </ol>
         </section>
 
@@ -115,7 +115,7 @@ if(isset($_GET['category'])){
                             <td>".$stock."</td>
                           
                             <td>
-                              <button class='btn btn-success btn-sm addStock btn-flat' data-id='".$row['id']."'><i class='fa fa-plus-square'></i> Add Stock</button>
+                              <button class='btn btn-danger btn-sm writeOff btn-flat' data-id='".$row['id']."'><i class='fa fa-remove'></i> Write Off</button>
                             </td>
                           </tr>
                         ";
@@ -146,9 +146,9 @@ if(isset($_GET['category'])){
 <?php include 'includes/scripts.php'; ?>
 <script>
     $(function(){
-        $(document).on('click', '.addStock', function(e){
+        $(document).on('click', '.writeOff', function(e){
             e.preventDefault();
-            $('#addStock').modal('show');
+            $('#writeOff').modal('show');
             var id = $(this).data('id');
             getRow(id);
         });

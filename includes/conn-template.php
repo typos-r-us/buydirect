@@ -3,8 +3,8 @@
 Class Database{
     // declare the structure and functions of the database class
 	private $server = "mysql:host=localhost;dbname=buydirect";
-	private $username = "root";
-	private $password = "";
+	private $username = ""; # Add database username. Usually 'root'.
+	private $password = ""; # Add database password. Usually empty.
 	private $options  = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,);
 	protected $conn;
 

@@ -23,6 +23,38 @@
 	        			}
 	        		?>
 		            <h2>Kenya's Leading Electronics Super Store!</h2>
+                    <p>
+                        <b>BuyDirect</b> is a brand of domestic appliances. Ownership of the brand is split between 3 experienced Kenyan retail companies.
+                        The brand focuses on making high quality household brands accessible to the Kenyan shopper.
+                        <br><br>
+                        Founded on the philosophy of Customer Value and Service. The company's success is dependent on building and maintaining customer loyalty.
+                        <br><br>
+                        Through strong supplier partnerships, we expect to provide customers with quality products featuring the latest technology, while offering unparalleled after-sales service.
+                        Our Vision
+                        To enhance the lifestyle of our Eastern African Customers
+                        <br><br>
+
+                        <b>Our Mission</b>
+                        <br>
+                        <ul>
+                            <li>
+                                To supply and support domestic and commercial electronic appliances
+                            </li>
+                        </ul>
+
+                        <br>
+
+                        <b>Our Core Values</b>
+                        <ul>
+                            <li> Integrity and Excellence</li>
+                            We absolutely believe in doing the right thing: for our customers, our people and all stakeholders.
+                            <li>Teamwork, Empowerment and Growth</li>
+                            We develop ourselves as people, and we work collaboratively between individuals, departments, locations and levels.
+                        </ul>
+                    </p>
+                    <hr>
+                    <h2>Browse Our Popular Items Below and Keep Up With The Latest Trends!</h2>
+
 		       		<?php
 		       			$month = date('m');
 		       			$dbConnection = $pdo->open();

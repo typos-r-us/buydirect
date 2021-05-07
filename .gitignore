@@ -13,3 +13,7 @@
 # Editor-based HTTP Client requests
 /httpRequests/
 /register.php
+/buydirect-v1.zip
+/momo/config.php
+/momo/TestCredentials.txt
+/momo/mpesa-integration-log.txt

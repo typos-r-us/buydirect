@@ -11,9 +11,8 @@
 	$logFile = "M_PesaValidationResponse.txt";
 	$jsonMpesaResponse = json_decode($mpesaResponse,true); # convert the mpesaResponse stream to json
 
-	# Write to file
+	# Write M-Pesa response to file
 	$log = fopen($logFile, "a"); # open logFile in append mode
-
 	fwrite($log, $mpesaResponse); # write the stream to file
 	fclose($log);
 

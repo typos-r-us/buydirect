@@ -11,7 +11,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Sales History
+        Sales For Current Month
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -52,8 +52,10 @@
                     $conn = $pdo->open();
 
                     try{
-                      $stmt = $conn->prepare("SELECT *, sales.id AS salesid FROM sales LEFT JOIN users ON users.id=sales.user_id ORDER BY sales_date DESC");
-                      $stmt->execute();
+                        $m=date('m');
+                        $year=date('y');
+                      $stmt = $conn->prepare("SELECT *, sales.id AS salesid FROM sales LEFT JOIN users ON users.id=sales.user_id WHERE MONTH(sales_date)=:month AND YEAR(sales_date)=:year ORDER BY sales_date DESC");
+                      $stmt->execute(['month'=>$m, 'year'=>$year]);
                       foreach($stmt as $row){
                         $stmt = $conn->prepare("SELECT * FROM details LEFT JOIN products ON products.id=details.product_id WHERE details.sales_id=:id");
                         $stmt->execute(['id'=>$row['salesid']]);

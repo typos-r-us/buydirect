@@ -1,32 +1,27 @@
 <?php
-	include 'includes/session.php';
-	include 'includes/slugify.php';
+    include 'includes/session.php';
 
-	if(isset($_POST['edit'])){
-		$id = $_POST['id'];
-		$name = $_POST['name'];
-		$slug = slugify($name);
-		$category = $_POST['category'];
-		$price = $_POST['price'];
-		$description = $_POST['description'];
+    if(isset($_POST['addStock'])){
+        $id = $_POST['id'];
+        $stock = $_POST['stock'];
 
-		$conn = $pdo->open();
+        $conn = $pdo->open();
 
-		try{
-			$stmt = $conn->prepare("UPDATE products SET name=:name, slug=:slug, category_id=:category, price=:price, description=:description WHERE id=:id");
-			$stmt->execute(['name'=>$name, 'slug'=>$slug, 'category'=>$category, 'price'=>$price, 'description'=>$description, 'id'=>$id]);
-			$_SESSION['success'] = 'Product updated successfully';
-		}
-		catch(PDOException $e){
-			$_SESSION['error'] = $e->getMessage();
-		}
-		
-		$pdo->close();
-	}
-	else{
-		$_SESSION['error'] = 'Fill up edit product form first';
-	}
+        try{
+            $stmt = $conn->prepare("UPDATE products SET stock = stock+$stock WHERE id=:id");
+            $stmt->execute(['id'=>$id]);
 
-	header('location: products.php');
+            $_SESSION['success'] = 'Stock added successfully';
+        }
+        catch(PDOException $e){
+            $_SESSION['error'] = $e->getMessage();
+        }
 
+        $pdo->close();
+    }
+    else{
+        $_SESSION['error'] = 'Provide required information.';
+    }
+
+    header('location: receive_items.php');
 ?>

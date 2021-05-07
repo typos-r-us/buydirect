@@ -17,6 +17,9 @@
 				$stmt = $conn->prepare("INSERT INTO cart (user_id, product_id, quantity) VALUES (:user_id, :product_id, :quantity)");
 				$stmt->execute(['user_id'=>$user['id'], 'product_id'=>$id, 'quantity'=>$quantity]);
 				$output['message'] = 'Item added to cart';
+				// Decrement the stock
+				$stmt = $conn->prepare("UPDATE products SET stock = stock-$quantity WHERE id=:product_id");
+				$stmt->execute(['product_id'=>$id]);
 				
 			}
 			catch(PDOException $e){

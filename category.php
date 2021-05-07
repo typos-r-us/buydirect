@@ -42,19 +42,31 @@
 						    foreach ($stmt as $row) {
 						    	$image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
 						    	$inc = ($inc == 3) ? 1 : $inc + 1;
+						    	$prodid = $row['id'];
 	       						if($inc == 1) echo "<div class='row'>";
 	       						echo "
-	       							<div class='col-sm-4'>
-	       								<div class='box box-solid'>
-		       								<div class='box-body prod-body'>
-		       									<img src='".$image."' width='100%' height='230px' class='thumbnail'>
-		       									<h5><a href='product.php?product=".$row['slug']."'>".$row['name']."</a></h5>
-		       								</div>
-		       								<div class='box-footer'>
-		       									<b>KSh. ".number_format($row['price'], 2)."</b>
-		       								</div>
-	       								</div>
-	       							</div>
+                                <form class='form-inline' id='productForm'>
+                                    
+                                        <div class='col-sm-4'>
+                                            <div class='box box-solid'>
+                                                <div class='box-body prod-body'>
+                                                    <img src='".$image."' width='100%' height='230px' class='thumbnail'>
+                                                    <h5><a href='product.php?product=".$row['slug']."'>".$row['name']."</a></h5>
+                                                </div>
+                                                <div class='box-footer'>
+                                                    <b>KSh. ".number_format($row['price'], 2)."</b>
+                                                        <!-- Hidden input -->
+                                                        <input type='hidden' value=".$prodid." name='id'>
+                                                        <!--Small add cart button-->
+                                                        <div style='float: right'>
+                                                            <button type='submit' class='btn btn-primary btn-sm btn-flat'>
+                                                            <i class='fa fa-shopping-cart'></i> Add to Cart</button>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                  
+	       						</form>
 	       						";
 	       						if($inc == 3) echo "</div>";
 						    }

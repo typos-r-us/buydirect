@@ -1,5 +1,5 @@
 <!-- Write Off Items -->
-<div class="modal fade" id="write-off">
+<div class="modal fade" id="writeOff">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -7,25 +7,26 @@
                     <span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title"><b>Write Off Items...</b></h4>
             </div>
-            <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="write_off_items.php">
+            <form class="form-horizontal" method="POST" action="write_off.php">
+                <div class="modal-body">
+
                     <input type="hidden" class="prodid" name="id">
                     <div class="text-center">
-                        <p>WRITE OFF DAMAGED/LOST STOCK</p>
-                        <h2 class="bold name"></h2>
+                        <p>Item Details</p>
+                        <h3 class="bold name"></h3>
                     </div>
                     <div class="form-group">
-                        <label for="quantity" class="col-sm-5 control-label">Number of Items:</label>
-                        <div class="col-sm-5">
-                            <input type="number" class="form-control" id="quantity" name="quantity" required>
+                        <label for="editStock" class="col-sm-5 control-label">Quantity: </label>
+                        <div class="col-sm-4">
+                            <input class="form-control" type="number" id="editStock" name="stock" required>
                         </div>
                     </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
-                <button type="submit" class="btn btn-danger btn-flat" name="write-off"><i class="fa fa-remove"></i> Write Off Items</button>
-                </form>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
+                    <button type="submit" class="btn btn-danger btn-flat" name="writeOff"><i class="fa fa-remove"></i> Write Off</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -106,4 +107,35 @@
         </div>
     </div>
 </div>
+<!--Receive Stock-->
+<div class="modal fade" id="addStock">
+    <div class="modal-dialog">
+        <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"><b>Receiving Items...</b></h4>
+                </div>
+            <form class="form-horizontal" method="POST" action="addstock.php">
+                <div class="modal-body">
 
+                        <input type="hidden" class="prodid" name="id">
+                        <div class="text-center">
+                            <p>Item Details</p>
+                            <h3 class="bold name"></h3>
+                        </div>
+                        <div class="form-group">
+                            <label for="editStock" class="col-sm-5 control-label">Quantity: </label>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="number" id="editStock" name="stock" required>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
+                    <button type="submit" class="btn btn-success btn-flat" name="addStock"><i class="fa fa-plus-square"></i> Receive</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

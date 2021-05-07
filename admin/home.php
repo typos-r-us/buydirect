@@ -57,7 +57,8 @@
       ?>
       <!-- Small boxes (Stat box) -->
       <div class="row">
-        <div class="col-lg-3 col-xs-6">
+          <!--  Check Annual sales-->
+        <div class="col-lg-2 col-xs-4">
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
@@ -71,9 +72,9 @@
                   $total += $subtotal;
                 }
 
-                echo "<h3>KSh. ".number_format_short($total, 2)."</h3>";
+                echo "<h4 style='font-size: 1.6em'><b>KSh. ".number_format_short($total, 2)."</b></h4>";
               ?>
-              <p>Total Sales</p>
+              <p>Total Annual Sales</p>
             </div>
             <div class="icon">
               <i class="fa fa-shopping-cart"></i>
@@ -81,8 +82,64 @@
             <a href="sales.php" class="small-box-footer">Details <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
+          <!--  Check Annual sales-->
+          <!--  Check monthly sales-->
+          <div class="col-lg-2 col-xs-4">
+              <!-- small box -->
+              <div class="small-box bg-purple">
+                  <div class="inner">
+                      <?php
+                      $m=date('m');
+                      $stmt = $conn->prepare("SELECT * FROM details LEFT JOIN sales ON sales.id=details.sales_id LEFT JOIN products 
+                                                ON products.id=details.product_id WHERE MONTH(sales_date)=:month AND YEAR(sales_date)=:year");
+                      $stmt->execute(['month'=>$m, 'year'=>$year]);
+                      $total = 0;
+                      foreach($stmt as $srow){
+                          $subtotal = $srow['price']*$srow['quantity'];
+                          $total += $subtotal;
+                      }
+                      echo "<h4 style='font-size: 1.6em'><b>KSh. ".number_format_short($total, 2)."</b></h4>";
+                      ?>
+                      <p>Total Monthly Sales</p>
+                  </div>
+                  <div class="icon">
+                      <i class="fa fa-shopping-cart"></i>
+                  </div>
+                  <a href="monthlysales.php" class="small-box-footer">Details <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+          </div>
+          <!--  Check monthly sales-->
+          <!--  Check Daily Sales -->
+          <div class="col-lg-2 col-xs-4">
+              <!-- small box -->
+              <div class="small-box bg-red">
+                  <div class="inner">
+                      <?php
+                      $stmt = $conn->prepare("SELECT * FROM details LEFT JOIN sales ON sales.id=details.sales_id LEFT JOIN products 
+                                                ON products.id=details.product_id WHERE sales_date=:sales_date");
+                      $stmt->execute(['sales_date'=>$today]);
+
+                      $total = 0;
+                      foreach($stmt as $trow){
+                          $subtotal = $trow['price']*$trow['quantity'];
+                          $total += $subtotal;
+                      }
+
+                      echo "<h4 style='font-size: 1.6em'><b>KSh. ".number_format_short($total, 2)."</b></h4>";
+
+                      ?>
+
+                      <p>Sales Today</p>
+                  </div>
+                  <div class="icon">
+                      <i class="fa fa-money"></i>
+                  </div>
+                  <a href="sales.php" class="small-box-footer">Details <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+          </div>
+          <!--  Check Daily Sales -->
+          <!--  Check Products -->
+        <div class="col-lg-2 col-xs-4">
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
@@ -91,7 +148,7 @@
                 $stmt->execute();
                 $prow =  $stmt->fetch();
 
-                echo "<h3>".$prow['numrows']."</h3>";
+                echo "<h4 style='font-size: 1.6em'><b>".$prow['numrows']."</b></h4>";
               ?>
           
               <p>Number of Products</p>
@@ -102,57 +159,31 @@
             <a href="products.php" class="small-box-footer">Details <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <?php
-                $stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM users");
-                $stmt->execute();
-                $urow =  $stmt->fetch();
+          <!--  Check Products -->
+          <!--  Check Users -->
+          <div class="col-lg-2 col-xs-4">
+              <!-- small box -->
+              <div class="small-box bg-yellow">
+                  <div class="inner">
+                      <?php
+                      $stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM users");
+                      $stmt->execute();
+                      $urow =  $stmt->fetch();
 
-                echo "<h3>".$urow['numrows']."</h3>";
-              ?>
-             
-              <p>Number of Users</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-users"></i>
-            </div>
-            <a href="users.php" class="small-box-footer">Details <i class="fa fa-arrow-circle-right"></i></a>
+                      echo "<h4 style='font-size: 1.6em'><b>".$urow['numrows']."</b></h4>";
+                      ?>
+
+                      <p>Number of Users</p>
+                  </div>
+                  <div class="icon">
+                      <i class="fa fa-users"></i>
+                  </div>
+                  <a href="users.php" class="small-box-footer">Details <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
           </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-red">
-            <div class="inner">
-              <?php
-                $stmt = $conn->prepare("SELECT * FROM details LEFT JOIN sales ON sales.id=details.sales_id LEFT JOIN products ON products.id=details.product_id WHERE sales_date=:sales_date");
-                $stmt->execute(['sales_date'=>$today]);
-
-                $total = 0;
-                foreach($stmt as $trow){
-                  $subtotal = $trow['price']*$trow['quantity'];
-                  $total += $subtotal;
-                }
-
-                echo "<h3>KSh. ".number_format_short($total, 2)."</h3>";
-                
-              ?>
-
-              <p>Sales Today</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-money"></i>
-            </div>
-            <a href="sales.php" class="small-box-footer">Details <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
+          <!--  Check Users -->
       </div>
-      <!-- /.row -->
+      <!-- Close Row -->
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
@@ -201,7 +232,8 @@
   $sales = array();
   for( $m = 1; $m <= 12; $m++ ) {
     try{
-      $stmt = $conn->prepare("SELECT * FROM details LEFT JOIN sales ON sales.id=details.sales_id LEFT JOIN products ON products.id=details.product_id WHERE MONTH(sales_date)=:month AND YEAR(sales_date)=:year");
+      $stmt = $conn->prepare("SELECT * FROM details LEFT JOIN sales ON sales.id=details.sales_id LEFT JOIN products 
+                                ON products.id=details.product_id WHERE MONTH(sales_date)=:month AND YEAR(sales_date)=:year");
       $stmt->execute(['month'=>$m, 'year'=>$year]);
       $total = 0;
       foreach($stmt as $srow){

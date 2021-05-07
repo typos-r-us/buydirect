@@ -18,6 +18,6 @@
 
 	$accessToken = $result->access_token;
 
-	echo $accessToken; # for debug purposes
+	# echo $accessToken; # for debug purposes
 
 	curl_close($curl);

@@ -62,7 +62,7 @@
             if(!isset($_SESSION['captcha'])){
               echo '
                 <di class="form-group" style="width:100%;">
-                  <div class="g-recaptcha" data-sitekey="6LcnFqgaAAAAAEhz-3TsLjnZFL8BLjRdoR4hJFJj"></div> <!--6LevO1IUAAAAAFX5PpmtEoCxwae-I8cCQrbhTfM6-->
+                  <div class="g-recaptcha" data-sitekey="6LcnFqgaAAAAAEhz-3TsLjnZFL8BLjRdoR4hJFJj"></div>
                 </di>
               ';
             }

@@ -65,6 +65,8 @@
 						<p>Password: ".$_POST['password']."</p>
 						<p>Please click the link below to activate your account.</p>
 						<a href='http://localhost/ecommerce/activate.php?code=".$code."&user=".$userid."'>Activate Account</a>
+						<p>Thank you and Happy Shopping!!</p>
+						<p>** Please note: Do not reply to this email. This email is sent from an unattended mailbox. Replies will not be read. **</p>
 					";
 
 					//Load phpmailer

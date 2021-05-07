@@ -15,7 +15,7 @@
 		echo "There is some problem in connection: " . $e->getMessage();
 	}
 
-	//page view
+	//page view counter
 	$now = date('Y-m-d');
 	if($product['date_view'] == $now){
 		$stmt = $conn->prepare("UPDATE products SET counter=counter+1 WHERE id=:id");
