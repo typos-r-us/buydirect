@@ -11,11 +11,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Sales For Current Month
+        Sales For Today
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Sales</li>
+        <li><a href="home.php"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Daily Sales</li>
       </ol>
     </section>
 
@@ -53,9 +53,10 @@
 
                     try{
                         $m=date('m');
+                        $d=date('md');
                         $year=date('y');
-                      $stmt = $conn->prepare("SELECT *, sales.id AS salesid FROM sales LEFT JOIN users ON users.id=sales.user_id WHERE MONTH(sales_date)=:month AND YEAR(sales_date)=:year ORDER BY sales_date DESC");
-                      $stmt->execute(['month'=>$m, 'year'=>$year]);
+                      $stmt = $conn->prepare("SELECT *, sales.id AS salesid FROM sales LEFT JOIN users ON users.id=sales.user_id WHERE DAY(sales_date)=:day AND YEAR(sales_date)=:year ORDER BY sales_date DESC");
+                      $stmt->execute(['day'=>$d, 'year'=>$year]);
                       foreach($stmt as $row){
                         $stmt = $conn->prepare("SELECT * FROM details LEFT JOIN products ON products.id=details.product_id WHERE details.sales_id=:id");
                         $stmt->execute(['id'=>$row['salesid']]);

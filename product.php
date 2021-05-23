@@ -28,7 +28,7 @@
 
 ?>
 <?php include 'includes/header.php'; ?>
-<body class="hold-transition skin-blue layout-top-nav">
+<body class="hold-transition skin-blue-light layout-top-nav">
 <script>
 (function(d, s, id) {
 	var js, fjs = d.getElementsByTagName(s)[0];

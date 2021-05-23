@@ -134,7 +134,7 @@
                   <div class="icon">
                       <i class="fa fa-money"></i>
                   </div>
-                  <a href="sales.php" class="small-box-footer">Details <i class="fa fa-arrow-circle-right"></i></a>
+                  <a href="dailysales.php" class="small-box-footer">Details <i class="fa fa-arrow-circle-right"></i></a>
               </div>
           </div>
           <!--  Check Daily Sales -->

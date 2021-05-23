@@ -76,30 +76,30 @@
 				    try {
 				        //Server settings
 				        $mail->isSMTP();                                     
-				        $mail->Host = 'smtp.gmail.com';
+				        $mail->Host = 'buydirect.palacina.com';
 				        $mail->SMTPDebug=2;
 				        $mail->SMTPAuth = true;
 				        $mail->Priority=1;
 				        $mail->Encoding='8bit';
 				        $mail->WordWrap = 50;
 				        $mail->isHTML(true);
-				        $mail->Username = 'gitonga.joyces.family';
-				        $mail->Password = 'KabWaithera23!'; //tYp05.4.5@l3
+                        $mail->Username = 'noreply@buydirect.palacina.com';
+                        $mail->Password = 'AQZdLgBaAkn3EJg';
 				        $mail->SMTPOptions = array(
 				            'ssl' => array(
 				            'verify_peer' => false,
 				            'verify_peer_name' => false,
 				            'allow_self_signed' => true
 				            )
-				        );                         
-				        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;//SMTPSecure = 'tls'; //ssl
-				        $mail->Port = 587; //465
+				        );
+                        $mail->SMTPSecure = ssl;//PHPMailer::ENCRYPTION_STARTTLS;//SMTPSecure = 'tls'; //ssl
+                        $mail->Port = 465;//587; //465
 
-				        $mail->setFrom('typosforsale@gmail.com');
-				        
-				        //Recipients
-				        $mail->addAddress($email);              
-				        $mail->addReplyTo('typosforsale@gmail.com');
+                        $mail->setFrom('noreply@buydirect.palacina.com');
+
+                        //Recipients
+                        $mail->addAddress($email);
+                        $mail->addReplyTo('noreply@buydirect.palacina.com');
 				       
 				        //Content
 				        $mail->isHTML(true);                                  

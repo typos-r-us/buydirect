@@ -1,12 +1,15 @@
 <?php
+  date_default_timezone_set('Africa/Nairobi');
   #include './access-token.php'; #test if this works
   #=================================================
   $consumerKey = 'PW3vWUP4Yr5nfLDGDii4laZGTEnKax3p';
   $consumerSecret = 'yMTKele5MHIRnMhZ';
 
-  $headers = ['Contemt-Type:application/json; charset=utf8'];
+  $headers = ['Content-Type:application/json; charset=utf8'];
 
   $access_token_url = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
+  $initiate_url = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
+  $CallBackURL = 'https://buydirect.palacina.com/momo/callback_url.php'; # check how to adapt this
 
   $curl = curl_init($access_token_url);
   curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
@@ -23,21 +26,18 @@
   # echo $accessToken; # for debug purposes
 
   curl_close($curl);
-  $stkHeader = array('Content-Type:application/json','Authorization:Bearer '.$accessToken);
+  $stkHeader = ['Content-Type:application/json','Authorization:Bearer '.$accessToken];
   #=================================================
   # Initiating the transaction
   $BusinessShortCode='174379';
   $Timestamp=date('YmdHis'); #20210513002240
   $Amount = '1'; # because... brokeness
   $PartyA = '254720376759'; #254700000000
-  $CallBackURL = 'https://buydirect.palacina.com/momo/callback_url.php'; # check how to adapt this
   $AccountReference = 'Cart ID: 14'; #Get from checkout cart ID, etc
   $TransactionDesc = uniqid('MPSL_');
   $Passkey = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919';
   $Password = base64_encode($BusinessShortcode.$Passkey.$Timestamp); #BusinessShortcode, Passkey, Timestamp
 
-
-  $initiate_url = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
   
   $curl = curl_init();
   curl_setopt($curl, CURLOPT_URL, $initiate_url);
